@@ -1,0 +1,50 @@
+<h1>{{package.name}}</h1>
+<h5>{{package.description}}</h5>
+{% if dependencies.0 %}
+    <h1>Dependencies</h1>
+    <ul>
+    {% for package in dependencies %}
+        {% if forloop.counter == 1 %}
+            {% for i in package %}
+                {% if i.installd %}
+                    <li>
+                        <a href="{{ i.name }}">{{ i.name }}</a> 
+                    </li>
+                {% else %}
+                    {{ i.name }}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <li>
+                {% for i in package %}
+                    {% if package|length > forloop.counter %}
+                        {% if i.installd %}
+                            <a href="{{ i.name }}">{{ i.name }}</a> or 
+                        {% else %}
+                            {{ i.name }} or
+                        {% endif %}
+                    {% else %}
+                        {% if i.installd %}
+                            <a href="{{ i.name }}">{{ i.name }}</a>
+                        {% else %}
+                            {{ i.name }}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if dependentOn %}
+    <h1>Dependent on</h1>
+    <ul>
+    {% for package in dependentOn %}
+        <li>
+            <a href="{{ package.name }}">{{ package.name }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+

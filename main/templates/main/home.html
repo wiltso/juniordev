@@ -1,0 +1,7 @@
+<ul>
+{% for package in pakages %}
+    <li>
+        <a href="{% url 'packageView' package.name %}">{{ package.name }}</a>
+    </li>
+{% endfor %}
+</ul>
