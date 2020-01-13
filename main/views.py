@@ -55,12 +55,12 @@ def packageView(request, name):
 # Runs when load any page
 def statusFileUpdated():
     # Gets the the modifyed datetime of the file
-    modifycationTime = subprocess.check_output('stat /var/lib/dpkg/status | grep "Modify"', shell=True)
-    
+    modifycationTime = subprocess.check_output('stat /app/status | grep "Modify"', shell=True)
+
     # Removes the some extra things from the date
     modifycationTime = modifycationTime[8:-10] + modifycationTime[-7:-1]
     
-    modifyedDate = datetime.strptime(modifycationTime.decode(), '%Y-%m-%d %H:%M:%S.%f %z')
+    modifyedDate = datetime.strptime(modifycationTime.decode(), '%Y-%m-%d %H:%M:%S.%f')
     
     # The last modifyed date is stored in the settings file
     # And yes it needs to be all capital letters
@@ -123,9 +123,10 @@ def addDependencyes(packObject, dependencies):
 
 # Updates the database form the status file
 def updateDB():
-    with open('/home/nop/Desktop/Reaktor/juniordev/status') as f:#/var/lib/dpkg/status') as f:
+    with open('/app/status') as f:#/var/lib/dpkg/status') as f:
         packageList = f.read()
     
+    print(packageList)
     # Splist the data from the file into a array of of all the packages
     # There is an empty line between all the packages and the file ends with 2 empty lines
     packageList = packageList.split('\n\n')[:-1]

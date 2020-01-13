@@ -121,5 +121,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LAST_MODIFYED_DATE = datetime.strptime('2000-01-01 00:00:00.000000 +0000', '%Y-%m-%d %H:%M:%S.%f %z')
+LAST_MODIFYED_DATE = datetime.strptime('2000-01-01 00:00:00.000000', '%Y-%m-%d %H:%M:%S.%f')
 a = "RDTFYGUHIj"
