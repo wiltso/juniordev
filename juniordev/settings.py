@@ -120,7 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LAST_MODIFYED_DATE = datetime.strptime('2000-01-01 00:00:00.000000', '%Y-%m-%d %H:%M:%S.%f')
 a = "RDTFYGUHIj"
