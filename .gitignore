@@ -3,3 +3,4 @@ venv/
 **/__pycache__
 status
 db.sqlite3
+.flake8

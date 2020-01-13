@@ -1,6 +1,6 @@
 <h1>{{package.name}}</h1>
 <h5>{{package.description}}</h5>
-{% if dependencies.0 %}
+{% if dependencies.0 or dependencies.1 %}
     <h1>Dependencies</h1>
     <ul>
     {% for package in dependencies %}
