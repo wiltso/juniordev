@@ -1,1 +1,1 @@
-web: gunicorn juniordev.wsgi --log-file -
+web: gunicorn juniordev.wsgi
