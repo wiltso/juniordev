@@ -22,10 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", "aRandomKeyThatIs'nSafe")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG_VALUE")
+DEBUG = bool(os.environ.get("DEBUG_VALUE", "True") == "True")
 
 ALLOWED_HOSTS = ["*"]
 
@@ -77,14 +77,6 @@ WSGI_APPLICATION = 'juniordev.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'efsrgsr': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hej',
-        'USER': 'nej',
-        'PASSWORD': 'hej',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    },
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
