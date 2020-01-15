@@ -126,7 +126,6 @@ def updateDB():
     with open('./status') as f:#/var/lib/dpkg/status') as f:
         packageList = f.read()
     
-    print(packageList)
     # Splist the data from the file into a array of of all the packages
     # There is an empty line between all the packages and the file ends with 2 empty lines
     packageList = packageList.split('\n\n')[:-1]
