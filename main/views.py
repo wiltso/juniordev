@@ -58,7 +58,7 @@ def statusFileUpdated():
     modifycationTime = subprocess.check_output('stat ./status | grep "Modify"', shell=True)
 
     # Removes the some extra things from the date
-    modifycationTime = modifycationTime[8:-10] + modifycationTime[-7:-1]
+    modifycationTime = modifycationTime[8:-10]
     
     modifyedDate = datetime.strptime(modifycationTime.decode(), '%Y-%m-%d %H:%M:%S.%f')
     
