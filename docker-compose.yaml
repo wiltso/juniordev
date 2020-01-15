@@ -1,12 +1,23 @@
 version: "3"
 
 services:
+  db:
+    image: postgres:9.6-alpine
+    environment:
+      POSTGRES_PASSWORD: "hej"
+      POSTGRES_DB: "hej"
+      POSTGRES_INITDB_ARGS: "--locale en_US.UTF-8 -E UTF8"
+    ports:
+      - "127.0.0.1:5432:5432"
   app:
     build: .
+    links:
+      - db
     ports:
       - "127.0.0.1:8000:8000"
     restart: always
     volumes:
       - ./:/app
     command: >
+      sh -c "pip freeze"
       sh -c "./manage.py runserver 0.0.0.0:8000"

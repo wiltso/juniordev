@@ -77,6 +77,14 @@ WSGI_APPLICATION = 'juniordev.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'hej',
+        'USER': 'nej',
+        'PASSWORD': 'hej',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
+    'fesdfesrfes': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
