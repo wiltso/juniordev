@@ -55,7 +55,7 @@ def packageView(request, name):
 # Runs when load any page
 def statusFileUpdated():
     # Gets the the modifyed datetime of the file
-    modifycationTime = subprocess.check_output('stat ./status | grep "Modify"', shell=True)
+    modifycationTime = subprocess.check_output('stat /var/lib/dpkg/status | grep "Modify"', shell=True)
 
     # Removes the some extra things from the date
     modifycationTime = modifycationTime[8:-10]
@@ -123,7 +123,7 @@ def addDependencyes(packObject, dependencies):
 
 # Updates the database form the status file
 def updateDB():
-    with open('./status') as f:#/var/lib/dpkg/status') as f:
+    with open('/var/lib/dpkg/status') as f:
         packageList = f.read()
     
     # Splist the data from the file into a array of of all the packages
