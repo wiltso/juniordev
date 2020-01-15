@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'juniordev.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'efsrgsr': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hej',
         'USER': 'nej',
@@ -84,7 +84,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     },
-    'fesdfesrfes': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
@@ -131,4 +131,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LAST_MODIFYED_DATE = datetime.strptime('2000-01-01 00:00:00.000000', '%Y-%m-%d %H:%M:%S.%f')
-a = "RDTFYGUHIj"
