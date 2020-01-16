@@ -1,0 +1,3 @@
+[submodule "remoteStatus"]
+	path = remoteStatus
+	url = git@gist.github.com:29735158335170c27297422a22b48caa.git
