@@ -187,7 +187,7 @@ def updateDB():
             # After were the description starts
             # Becouse the description is indented we check if the first chr is a space
             # If not thats where it ends
-            if index == len(splitedPackage) or not item.startswith(" ")):
+            if index == len(splitedPackage) or not item.startswith(" "):
                 descriptionEnds = index
                 break
 
