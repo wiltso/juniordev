@@ -185,11 +185,9 @@ def updateDB():
         for index, item in enumerate(splitedPackage[descriptionStart:]):
             # To find where the description ends it gose true all the lines,
             # After were the description starts
-            # Becouse the description is indented we check
-            # If the first letter is a space or a letter
-            # If it's a space we continue
-            # Else we conclude that the description ended at that index
-            if index == len(splitedPackage) or re.search("^[A-Z]", item):
+            # Becouse the description is indented we check if the first chr is a space
+            # If not thats where it ends
+            if index == len(splitedPackage) or not item.startswith(" ")):
                 descriptionEnds = index
                 break
 
