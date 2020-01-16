@@ -174,12 +174,12 @@ def updateDB():
 
         version = [item.split("ersion: ")[1] for item in splitedPackage if item.startswith(
             "Version: "
-        )]
+        )][0]
 
         # Get the index of were the first description line is
         descriptionStart = [i for i, item in enumerate(splitedPackage) if item.startswith(
             "Description: "
-        )]
+        )][0]
         descriptionEnds = int()
 
         for index, item in enumerate(splitedPackage[descriptionStart:]):
