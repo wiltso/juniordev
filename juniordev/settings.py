@@ -125,4 +125,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LAST_MODIFYED_DATE = datetime.strptime('2000-01-01 00:00:00.000000', '%Y-%m-%d %H:%M:%S.%f')
 
+STATUS_PATH = os.path.join(BASE_DIR, 'status')
+
+if os.path.isfile("/var/lib/dpkg/status"):
+    STATUS_PATH = "/var/lib/dpkg/status"
+
 django_heroku.settings(locals())
