@@ -13,7 +13,7 @@ import re
 # The home page where all the install packages are listed
 def home(request):
     statusFileUpdated()
-    packages = Package.objects.filter(installd=True).values('name').order_by('name')
+    packages = Package.objects.filter(installd=True).order_by('name')
     return render(request, 'main/home.html', {"pakages": packages})
 
 
@@ -28,34 +28,36 @@ def packageView(request, name):
     try:
         package = Package.objects.get(Q(name=name) & Q(installd=True))
     except Package.DoesNotExist:
-        return HttpResponse("<h1>" + name + " is not installed</h1>")
+        return HttpResponse("<h1>" + name + " is not installed</h1><a href=\"/\">All packages</a>")
 
     # Get's all of the package that depend on the package that was asked for
     dependentOn = Package.objects.filter(
         id__in=DependencyRelation.objects.filter(
             target=package
         ).values("source_id")
-    )
+    ).order_by("name")
 
     # Get's all of the dependencys that has other alternatives dependencyes
     allAlternatives = AlternativesDependencyes.objects.filter(source_packages=package)
 
     # The dependencyes are in a 2D array for the fornt end to render them correctly easyler
-    dependencyes = [package.dependencies.all().order_by("name")]
+    dependencyes = package.dependencies.all().order_by("name")
 
+    alternativePackages = []
     # Goes true all the alternatives and addes them in to the array
     # Read more about how and way like this in the readme file under Dependency Rendering
     for alternative in allAlternatives:
-        dependencyes.append(
+        alternativePackages.append(
             Package.objects.filter(
                 id__in=alternative.alternatives.all()
             ).order_by("name")
         )
-
+    print(alternativePackages, dependencyes)
     varibels = {
         "package": package,
         "dependencies": dependencyes,
-        "dependentOn": dependentOn
+        "alternatives": alternativePackages,
+        "dependentOn": dependentOn,
     }
 
     return render(request, 'main/packagesView.html', varibels)
@@ -182,19 +184,22 @@ def updateDB():
         )][0]
         descriptionEnds = int()
 
-        for index, item in enumerate(splitedPackage[descriptionStart:]):
+        # Removing the extra items that is not needed
+        splitedPackage = splitedPackage[descriptionStart:]
+        for i, item in enumerate(splitedPackage[1:]):
             # To find where the description ends it gose true all the lines,
             # After were the description starts
             # Becouse the description is indented we check if the first chr is a space
             # If not thats where it ends
-            if index == len(splitedPackage) or not item.startswith(" "):
-                descriptionEnds = index
+
+            if i == len(splitedPackage) or not item.startswith(" "):
+                descriptionEnds = i
                 break
 
         # Removes the "Description: " from the first line
         # Then adds the text back together as it was in the status file
-        description = splitedPackage[descriptionStart][13:] + "\n"
-        description += "\n".join(splitedPackage[descriptionStart + 1:descriptionEnds])
+        description = splitedPackage[0][13:] + "\n"
+        description += "\n".join(splitedPackage[1:descriptionEnds])
 
         # Trys to get the package from the database if it's not there we create it
         packObject, created = Package.objects.get_or_create(name=name)

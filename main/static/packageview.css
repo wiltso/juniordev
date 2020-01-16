@@ -1,0 +1,15 @@
+body{
+    margin-top: 20px;
+}
+.goBack{
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.description{
+    font-family: 'Actor';
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: pre-wrap;
+}

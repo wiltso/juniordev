@@ -130,4 +130,6 @@ STATUS_PATH = os.path.join(BASE_DIR, 'status')
 if os.path.isfile("/var/lib/dpkg/status"):
     STATUS_PATH = "/var/lib/dpkg/status"
 
+STATUS_PATH = os.path.join(BASE_DIR, 'status')
+
 django_heroku.settings(locals())
