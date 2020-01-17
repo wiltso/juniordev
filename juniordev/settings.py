@@ -76,7 +76,18 @@ WSGI_APPLICATION = 'juniordev.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# If you are changeing it to a postgres server you will need to change the
+# Something else to default and the default to something else remember to run
+# python manage.py migrate
 DATABASES = {
+    'Something else': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('NAME', 'theName'),
+        'USER': os.environ.get('USER', 'theUsersUssrname'),
+        'PASSWORD': os.environ.get('PASSWORD', 'thePassword'),
+        'HOST': os.environ.get('HOST', 'localhost'),
+        'PORT': os.environ.get('PORT', '5432')
+    },
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
