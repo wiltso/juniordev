@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'juniordev.wsgi.application'
 DATABASES = {
     'Something else': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('NAME', 'theName'),
-        'USER': os.environ.get('USER', 'theUsersUssrname'),
-        'PASSWORD': os.environ.get('PASSWORD', 'thePassword'),
-        'HOST': os.environ.get('HOST', 'localhost'),
-        'PORT': os.environ.get('PORT', '5432')
+        'NAME': os.environ.get('JUNIOR_DEV_NAME', 'thename'),
+        'USER': os.environ.get('JUNIOR_DEV_USER', 'theusersusername'),
+        'PASSWORD': os.environ.get('JUNIOR_DEV_PASSWORD', 'thePassword'),
+        'HOST': os.environ.get('JUNIOR_DEV_HOST', 'localhost'),
+        'PORT': os.environ.get('JUNIOR_DEV_PORT', '5432')
     },
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -140,7 +140,5 @@ STATUS_PATH = os.path.join(BASE_DIR, 'status')
 
 if os.path.isfile("/var/lib/dpkg/status"):
     STATUS_PATH = "/var/lib/dpkg/status"
-
-STATUS_PATH = os.path.join(BASE_DIR, 'status')
 
 django_heroku.settings(locals())
