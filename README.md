@@ -5,16 +5,16 @@
 ### Dependencies
 To run this repo you will need:
 1. Python 3.6 or later
-2. Django (`pip install django`)
+2. pip
+3. `pip install -r requirements.txt`
 
 ### Recomendations
 1. Make a virtual enviroment for python
 2. Have a postgres(first load will be faster)
-* For the the django project to work with postgress make sure `psycopg2` is installed with pip
-* You will also need to change some settings in the [./juniordev/settings.py](./juniordev/settings.py)file under the DATABASES varible around line 80
-Like the name, user, password, host(if you are not hosting it localy), and port (If you are using some other port for the database)
+* You will also need to change some settings in the [./juniordev/settings.py](./juniordev/settings.py) file in the DATABASES varible, around line 80.
+Like the name, user, password, host (if you are not hosting it localy the db), and port (If you are using some other port for the db)
 ```
-'name': name_of_the_databases,
+'name': name_of_the_db,
 'user': username_for_the_user,
 'password': password_for_the_user,
 ```
@@ -26,7 +26,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 (127.0.0.1:8000) the server will run on port 8000 if it's not in use then it will give you an error and you will need to run
-`python manage.py runserver 127.0.0.1:A port that is not in use example 8005`
+`python manage.py runserver 127.0.0.1:A_port_that_is_not_in_use_example 8005`
 
 
 ### Run after changes
@@ -40,8 +40,8 @@ python manage.py migrate
 ### Recomendations
 Export to os enviroment a SECRET_KEY == "A random string" and DEBUG_VALUE == 'False'
 
-
+### Command to deploy it
 ```
 python manage.py collectstatic
-python manage.py runserver 0.0.0.0: The port you want it to run on
+python manage.py runserver 0.0.0.0: The_port_you_want_it_to_run_on
 ```
